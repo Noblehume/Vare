@@ -1,0 +1,30 @@
+import requests
+
+def ottieni_meteo(citta, api_key):
+    # URL dell'API OpenWeatherMap per ottenere le informazioni sulla meteo
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={citta}&appid={api_key}"
+
+    # Effettua una richiesta GET all'API
+    risposta = requests.get(url)
+
+    # Verifica se la richiesta ha avuto successo (codice di stato 200)
+    if risposta.status_code == 200:
+        # Estrai i dati JSON dalla risposta
+        dati_meteo = risposta.json()
+
+        # Stampa le informazioni sulla meteo
+        print(f"Condizioni meteo a {citta}:")
+        print(f"Temperatura: {dati_meteo['main']['temp']}°C")
+        print(f"Descrizione: {dati_meteo['weather'][0]['description']}")
+        print(f"Umidità: {dati_meteo['main']['humidity']}%")
+        print(f"Velocità del vento: {dati_meteo['wind']['speed']} m/s")
+    else:
+        print(f"Errore nella richiesta. Codice di stato: {risposta.status_code}")
+
+if __name__ == "__main__":
+    # Inserisci il nome della città e la tua API key di OpenWeatherMap
+    citta = input("Inserisci il nome della città: ")
+    api_key = "la_tua_api_key"  # Sostituisci con la tua API key di OpenWeatherMap
+
+    # Chiamata alla funzione per ottenere le informazioni sulla meteo
+    ottieni_meteo(citta, api_key)
