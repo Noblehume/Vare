@@ -7,10 +7,7 @@ def ottieni_meteo(citta, api_key):
     # Effettua una richiesta GET all'API
     risposta = requests.get(url)
 
-    # Verifica se la richiesta ha avuto successo (codice di stato 200)
-    if risposta.status_code == 200:
-        # Estrai i dati JSON dalla risposta
-        dati_meteo = risposta.json()
+    # Verifica se la richiest
 
         # Stampa le informazioni sulla meteo
         print(f"Condizioni meteo a {citta}:")
